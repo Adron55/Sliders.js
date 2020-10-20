@@ -5,6 +5,7 @@ var slider_min = -11;
 
 var default_range = [0,100];
 var default_round = 0;
+var default_step = 1;
 var default_color = '#7ef4ff';
 
 var slider_positions = {};
@@ -160,6 +161,8 @@ function setSliderTo(name, value) {
         slider.parentNode.childNodes[2].firstChild.firstChild.firstChild.style.width=round(slider_percentages[name], 2)+'%';
         slider.parentNode.childNodes[2].firstChild.lastChild.style.left = 'calc('+round(slider_percentages[name], 2)+'% - 11px )';
         value = round(value, data_round);
+        var data_step = slider.getAttribute('step') !== null ? slider.getAttribute('step') : default_step;
+        if (slider.getAttribute('step') !== null) value = value * data_step;
         slider.value = value;
         slider_values[name] = value;
 
